@@ -1,0 +1,39 @@
+# Copyright (c) 2017-2018,2020-2021 The Linux Foundation. All rights reserved.
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
+on init
+    write /sys/class/backlight/panel0-backlight/brightness 200
+    setprop sys.usb.configfs 1
+    setprop prepdecrypt.setpatch true
+
+on property:ro.crypto.state=encrypted && property:ro.boot.dynamic_partitions=true
+    start recovery.nezha-crypto-timeout
+
+on property:ro.boot.usbcontroller=*
+    setprop sys.usb.controller ${ro.boot.usbcontroller}
+    wait /sys/bus/platform/devices/${ro.boot.usb.dwc3_msm:-a600000.ssusb}/mode
+    write /sys/bus/platform/devices/${ro.boot.usb.dwc3_msm:-a600000.ssusb}/mode peripheral
+    wait /sys/class/udc/${ro.boot.usbcontroller} 1
+
+on fs
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+    mkdir /mnt/vendor 0775 shell system
+    mkdir /mnt/vendor/persist 0771 root system
+    mount ext4 /dev/block/bootdevice/by-name/persist /mnt/vendor/persist nosuid nodev barrier=1
+    start recovery.nezha-persist-alias
+
+service recovery.nezha-persist-alias /system/bin/nezha-persist-alias.sh
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
+
+service recovery.nezha-crypto-timeout /system/bin/sh -c "sleep 30; setprop ctl.start odm.prepdecrypt"
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0

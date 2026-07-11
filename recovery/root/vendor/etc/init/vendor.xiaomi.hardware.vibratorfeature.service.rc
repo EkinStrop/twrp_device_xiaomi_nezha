@@ -1,0 +1,10 @@
+on init
+    chmod 0666 /sys/class/qcom-haptics/lra_calibration
+    chmod 0666 /sys/class/qcom-haptics/lra_frequency_hz
+    start vibratorfeature-hal-service
+
+service vibratorfeature-hal-service /odm/bin/hw/vendor.xiaomi.hardware.vibratorfeature.service
+    class hal
+    user system
+    group system input audio
+    seclabel u:r:recovery:s0

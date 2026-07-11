@@ -1,0 +1,40 @@
+on property:init.svc.vendor.qseecomd=running
+    start recovery.nezha-security-setup
+
+service recovery.nezha-security-setup /system/bin/nezha-security-setup.sh
+    user root
+    group root system
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
+
+service vendor.minkdaemon /vendor/bin/hlosminkdaemon
+    user system
+    group system oem_2912 wakelock
+    capabilities WAKE_ALARM BLOCK_SUSPEND
+    disabled
+    socket ssgtzd stream 0660 system oem_2912
+    socket hlos_mink_opener stream 0660 system system
+    seclabel u:r:recovery:s0
+
+on property:init.svc.vendor.minkdaemon=running
+    start recovery.nezha-weaver-start
+
+service recovery.nezha-weaver-start /system/bin/nezha-weaver-start.sh
+    user root
+    group root system
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
+
+service vendor.secure_element /vendor/bin/hw/android.hardware.secure_element-service.qti
+    user system
+    group nfc system
+    disabled
+    seclabel u:r:recovery:s0
+
+service weaver_hal_service /odm/bin/hw/android.hardware.weaver-service.thales
+    user root
+    group root system drmrpc
+    disabled
+    seclabel u:r:recovery:s0
