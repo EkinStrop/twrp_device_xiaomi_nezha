@@ -6,6 +6,7 @@ import /init.recovery.wifi.rc
 
 on init
     write /sys/class/backlight/panel0-backlight/brightness 200
+    setprop service.adb.tcp.port 5555
     setprop sys.usb.configfs 1
     setprop prepdecrypt.setpatch true
 
