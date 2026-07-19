@@ -1,0 +1,52 @@
+diff --git a/gui/theme/common/languages/en.xml b/gui/theme/common/languages/en.xml
+index 7918231..8ee7332 100755
+--- a/gui/theme/common/languages/en.xml
++++ b/gui/theme/common/languages/en.xml
+@@ -786,7 +786,6 @@
+ 		<string name="wlan_password_prompt">Enter password for network:</string>
+ 		<string name="wlan_encryption_hdr">Encryption:</string>
+ 		<string name="wlan_password_hint">Press back to cancel.</string>
+-		<string name="wlan_log_hdr">This page is built by Jason</string>
+ 		<string name="wlan_get_status_btn">Get Status</string>
+ 		<string name="wlan_test_network_btn">Test Network</string>
+ 		<string name="wlan_scan_btn">Scan</string>
+diff --git a/gui/theme/common/portrait.xml b/gui/theme/common/portrait.xml
+index 30b4df0..e2cd33f 100755
+--- a/gui/theme/common/portrait.xml
++++ b/gui/theme/common/portrait.xml
+@@ -3905,11 +3905,6 @@
+ 				<text>Network Disabled for Device</text>
+ 			</text>
+ 
+-			<text style="text_m">
+-				<placement x="%col1_x_header%" y="%row4_header_y%"/>
+-				<text>{@wlan_log_hdr=This page is building by Jason}</text>
+-			</text>
+-
+ 			<borderedlogbox toprow="%row3_y%" bottomrow="%row16a_y%" borderwidth="2" leftmargin="75" rightmargin="75">
+ 				<placement x="%indent%" w="%content_width%"/>
+ 				<color foreground="%text_color%" background="%background_color%" border="%accent_color%"/>
+diff --git a/gui/theme/extra-languages/languages/zh_CN.xml b/gui/theme/extra-languages/languages/zh_CN.xml
+index 2363ed5..a704b6a 100644
+--- a/gui/theme/extra-languages/languages/zh_CN.xml
++++ b/gui/theme/extra-languages/languages/zh_CN.xml
+@@ -778,7 +778,6 @@
+ 		<string name="wlan_password_prompt">请输入当前网络密码:</string>
+ 		<string name="wlan_encryption_hdr">安全性:</string>
+ 		<string name="wlan_password_hint">按返回按钮取消。</string>
+-		<string name="wlan_log_hdr">此界面由 Jason 构建</string>
+ 		<string name="wlan_get_status_btn">获取状态</string>
+ 		<string name="wlan_test_network_btn">测试网络</string>
+ 		<string name="wlan_scan_btn">扫描</string>
+diff --git a/gui/theme/extra-languages/languages/zh_TW.xml b/gui/theme/extra-languages/languages/zh_TW.xml
+index ceff037..85282ae 100644
+--- a/gui/theme/extra-languages/languages/zh_TW.xml
++++ b/gui/theme/extra-languages/languages/zh_TW.xml
+@@ -787,7 +787,6 @@
+ 		<string name="wlan_password_prompt">輸入網路密碼：</string>
+ 		<string name="wlan_encryption_hdr">加密：</string>
+ 		<string name="wlan_password_hint">按返回取消。</string>
+-		<string name="wlan_log_hdr">此頁面由 Jason 建立</string>
+ 		<string name="wlan_get_status_btn">取得狀態</string>
+ 		<string name="wlan_test_network_btn">測試網路</string>
+ 		<string name="wlan_scan_btn">掃描</string>

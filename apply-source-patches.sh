@@ -31,3 +31,5 @@ apply_patch bootable/recovery \
     "$device_dir/patches/twrp-16/0003-recovery-fix-removable-storage-and-battery.patch"
 apply_patch bootable/recovery \
     "$device_dir/patches/twrp-16/0004-recovery-wire-wlan-service-controls.patch"
+apply_patch bootable/recovery \
+    "$device_dir/patches/twrp-16/0005-recovery-remove-wlan-page-label.patch"
