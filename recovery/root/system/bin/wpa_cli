@@ -1,0 +1,3 @@
+#!/system/bin/sh
+
+exec /vendor/bin/wpa_cli "$@"

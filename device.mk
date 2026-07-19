@@ -35,12 +35,21 @@ PRODUCT_PROPERTY_OVERRIDES += persist.sys.fuse.passthrough.enable=true
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/twrp.flags:recovery/root/system/etc/twrp.flags \
     $(DEVICE_PATH)/recovery/root/init.recovery.qcom.rc:recovery/root/init.recovery.qcom.rc \
+    $(DEVICE_PATH)/recovery/root/init.recovery.wifi.rc:recovery/root/init.recovery.wifi.rc \
     $(DEVICE_PATH)/recovery/root/init.recovery.usb.rc:recovery/root/init.recovery.usb.rc \
+    $(DEVICE_PATH)/recovery/root/system/bin/busybox:recovery/root/system/bin/busybox \
+    $(DEVICE_PATH)/recovery/root/system/bin/dhcpcd:recovery/root/system/bin/dhcpcd \
+    $(DEVICE_PATH)/recovery/root/system/bin/wpa_cli:recovery/root/system/bin/wpa_cli \
+    $(DEVICE_PATH)/recovery/root/system/bin/nezha-dhcp.sh:recovery/root/system/bin/nezha-dhcp.sh \
     $(DEVICE_PATH)/recovery/root/system/bin/nezha-security-setup.sh:recovery/root/system/bin/nezha-security-setup.sh \
+    $(DEVICE_PATH)/recovery/root/system/bin/nezha-wlan-setup.sh:recovery/root/system/bin/nezha-wlan-setup.sh \
     $(DEVICE_PATH)/recovery/root/system/bin/nezha-weaver-start.sh:recovery/root/system/bin/nezha-weaver-start.sh \
+    $(DEVICE_PATH)/recovery/root/system/etc/resolv.conf:recovery/root/system/etc/resolv.conf \
     $(foreach ta,$(notdir $(wildcard $(DEVICE_PATH)/prebuilt/security/ta/*)),$(DEVICE_PATH)/prebuilt/security/ta/$(ta):recovery/root/system/bin/twrp_secure_element_ta/$(ta)) \
     $(DEVICE_PATH)/recovery/root/system/manifest.xml:recovery/root/system/manifest.xml \
     $(DEVICE_PATH)/recovery/root/vendor/manifest.xml:recovery/root/vendor/etc/vintf/manifest.xml \
+    $(DEVICE_PATH)/recovery/root/vendor/etc/vintf/manifest/android.hardware.wifi.supplicant.xml:recovery/root/vendor/etc/vintf/manifest/android.hardware.wifi.supplicant.xml \
+    $(DEVICE_PATH)/recovery/root/vendor/etc/vintf/manifest/vendor.qti.hardware.wifi.supplicant.xml:recovery/root/vendor/etc/vintf/manifest/vendor.qti.hardware.wifi.supplicant.xml \
     $(DEVICE_PATH)/recovery/root/vendor/etc/vintf/manifest/android.hardware.security.onekeymint-service-qti.xml:recovery/root/vendor/etc/vintf/manifest/android.hardware.security.onekeymint-service-qti.xml \
     $(DEVICE_PATH)/recovery/root/vendor/etc/vintf/manifest/android.hardware.vibrator-service.xml:recovery/root/vendor/etc/vintf/manifest/android.hardware.vibrator-service.xml \
     $(DEVICE_PATH)/recovery/root/vendor/etc/init/android.hardware.security.onekeymint-service-qti.rc:recovery/root/vendor/etc/init/android.hardware.security.onekeymint-service-qti.rc \

@@ -1,0 +1,49 @@
+diff --git a/gui/action.cpp b/gui/action.cpp
+index 2abba53..adcb7c0 100644
+--- a/gui/action.cpp
++++ b/gui/action.cpp
+@@ -2407,30 +2407,36 @@ static GUIBorderedLogBox* FindWlanLogBox() {
+ 
+ int GUIAction::wlanstart(string arg __unused) {
+ 	GUIBorderedLogBox* logBox = FindWlanLogBox();
++	int result = TWFunc::Exec_Cmd("setprop supplicant.status running");
+ 	if (logBox) {
+ 		logBox->AddLogLine("[INFO] Starting WLAN service...", "normal");
+-		logBox->AddLogLine("[INFO] Initializing network interface...", "normal");
+-		logBox->AddLogLine("[INFO] WLAN service started successfully", "normal");
+-		logBox->AddLogLine("[INFO] Interface: wlan0", "normal");
+-		logBox->AddLogLine("[INFO] Status: UP", "normal");
++		if (result == 0) {
++			logBox->AddLogLine("[INFO] WLAN service start requested", "normal");
++		} else {
++			logBox->AddLogLine("[ERROR] Failed to start WLAN service", "error");
++		}
+ 		gui_forceRender();
+ 	} else {
+ 		LOGERR("WLAN log box not found\n");
+ 	}
+-	return 0;
++	return result;
+ }
+ 
+ int GUIAction::wlanstop(string arg __unused) {
+ 	GUIBorderedLogBox* logBox = FindWlanLogBox();
++	int result = TWFunc::Exec_Cmd("setprop supplicant.status stopped");
+ 	if (logBox) {
+ 		logBox->AddLogLine("[INFO] Stopping WLAN service...", "normal");
+-		logBox->AddLogLine("[INFO] WLAN service stopped", "normal");
+-		logBox->AddLogLine("[INFO] Interface: wlan0 - DOWN", "normal");
++		if (result == 0) {
++			logBox->AddLogLine("[INFO] WLAN service stop requested", "normal");
++		} else {
++			logBox->AddLogLine("[ERROR] Failed to stop WLAN service", "error");
++		}
+ 		gui_forceRender();
+ 	} else {
+ 		LOGERR("WLAN log box not found\n");
+ 	}
+-	return 0;
++	return result;
+ }
+ 
+ int GUIAction::wlanscan(std::string arg __unused) {

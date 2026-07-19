@@ -1,0 +1,4 @@
+#!/system/bin/sh
+
+interface_name="${1:-wlan0}"
+exec /system/bin/toybox dhcp -f -q -n -s /system/bin/nezha-dhcp.sh -i "$interface_name"
